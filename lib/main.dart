@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:quicktask/core/notifications/notification_service.dart';
 import 'package:quicktask/features/todo/data/models/task_adapter.dart';
-import 'package:quicktask/features/todo/presentation/task_list_page.dart';
+
+import 'features/home/presentation/home.dart';
 import 'features/todo/data/models/task_model.dart';
 import 'injection_container.dart';
 
@@ -12,7 +14,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(TaskModelAdapter());
   await Hive.openBox<TaskModel>('tasks');
-
+  await NotificationService.init();
   await initDI();
 
   runApp(const ProviderScope(child: MyApp()));
@@ -23,10 +25,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
-      home: const TaskListPage(),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, theme: ThemeData(useMaterial3: true), home: HomeView());
   }
 }

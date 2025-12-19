@@ -1,3 +1,4 @@
+import 'package:quicktask/core/notifications/notification_service.dart';
 import 'package:quicktask/features/todo/domain/usecases/add_task.dart';
 import 'package:quicktask/features/todo/domain/usecases/delete_task.dart';
 import 'package:quicktask/features/todo/domain/usecases/get_taskts.dart';
@@ -42,6 +43,14 @@ class TaskP extends _$TaskP {
 
   Future<void> add(Task task) async {
     await _addTask(task);
+    if (task.reminderTime != null) {
+      await NotificationService.scheduleTaskReminder(
+        id: task.id.hashCode,
+        title: "Task Reminder",
+        body: task.title,
+        scheduledTime: task.reminderTime!,
+      );
+    }
     await loadTasks();
   }
 
@@ -52,6 +61,7 @@ class TaskP extends _$TaskP {
 
   Future<void> remove(String id) async {
     await _deleteTask(id);
+    await NotificationService.cancel(id.hashCode);
     await loadTasks();
   }
 
