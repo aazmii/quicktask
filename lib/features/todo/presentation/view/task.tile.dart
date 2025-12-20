@@ -14,7 +14,8 @@ class TaskTile extends StatelessWidget {
     return ListTile(
       leading: Checkbox(value: task.isCompleted, onChanged: (_) => onToggle()),
       title: Text(task.title, style: TextStyle(decoration: task.isCompleted ? TextDecoration.lineThrough : null)),
-      subtitle: (task.description == null || task.description!.isEmpty) ? null : Text(task.description!),
+      subtitle: Text(task.reminderTime != null ? 'Reminder: ${task.reminderTime}' : ''),
+      // subtitle: (task.description == null || task.description!.isEmpty) ? null : Text(task.description!),
       trailing: Wrap(
         spacing: 8,
         children: [

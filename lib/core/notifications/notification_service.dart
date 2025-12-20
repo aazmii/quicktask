@@ -1,19 +1,30 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:timezone/timezone.dart' as tz;
+import 'package:quicktask/platform_channel.dart';
 import 'package:timezone/data/latest.dart' as tzData;
+
+import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
   static final _plugin = FlutterLocalNotificationsPlugin();
+  static FlutterLocalNotificationsPlugin get plugin => _plugin;
 
   static Future<void> init() async {
     tzData.initializeTimeZones();
+    tz.setLocalLocation(tz.local);
 
-    const android = AndroidInitializationSettings('@mipmap/ic_launcher');
-    const ios = DarwinInitializationSettings();
+    final androidPlugin = _plugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
+
+    await androidPlugin?.requestNotificationsPermission();
+
+    // 🔥 REQUIRED FOR ANDROID 12+
+    await androidPlugin?.requestExactAlarmsPermission();
 
     const settings = InitializationSettings(
-      android: android,
-      iOS: ios,
+      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+      iOS: DarwinInitializationSettings(),
     );
 
     await _plugin.initialize(settings);
@@ -39,14 +50,29 @@ class NotificationService {
         ),
         iOS: DarwinNotificationDetails(),
       ),
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
+    );
+  }
+
+  static showNotification(int id, String title, String body) async {
+    await _plugin.show(
+      id,
+      title,
+      body,
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'quick-task',
+          'Quick Task',
+          importance: Importance.max,
+          priority: Priority.high,
+        ),
+      ),
     );
   }
 
   static Future<void> cancel(int id) async {
     await _plugin.cancel(id);
   }
-  
 }

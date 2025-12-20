@@ -17,6 +17,9 @@ class TaskModel extends HiveObject {
 
   @HiveField(4)
   DateTime createdAt;
+  
+  @HiveField(5)
+  DateTime? reminderTime;
 
   TaskModel({
     required this.id,
@@ -24,6 +27,7 @@ class TaskModel extends HiveObject {
     this.description,
     required this.isCompleted,
     required this.createdAt,
+    this.reminderTime,
   });
 
   factory TaskModel.fromEntity(Task t) => TaskModel(
@@ -32,8 +36,15 @@ class TaskModel extends HiveObject {
     description: t.description,
     isCompleted: t.isCompleted,
     createdAt: t.createdAt,
+    reminderTime: t.reminderTime,
   );
 
-  Task toEntity() =>
-      Task(id: id, title: title, description: description, isCompleted: isCompleted, createdAt: createdAt);
+  Task toEntity() => Task(
+    id: id,
+    title: title,
+    description: description,
+    isCompleted: isCompleted,
+    createdAt: createdAt,
+    reminderTime: reminderTime,
+  );
 }

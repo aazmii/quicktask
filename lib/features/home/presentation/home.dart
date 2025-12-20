@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quicktask/features/todo/presentation/task_list_page.dart';
+import 'package:quicktask/features/todo/presentation/view/task_list_page.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -21,6 +21,9 @@ class HomeScreenState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('QuickTask'),
+      ),
       body: _pages[_currentIndex], // shows selected tab content
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
