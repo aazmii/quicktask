@@ -49,37 +49,60 @@ QuickTask is a cross-platform mobile application that helps users manage their d
 
 ```
 quicktask_app/
-├── lib/
-│   ├── core/
-│   │   ├── constants/
-│   │   ├── theme/
-│   │   ├── utils/
-│   │   └── widgets/
-│   ├── features/
-│   │   ├── tasks/
-│   │   │   ├── data/
-│   │   │   │   ├── models/
-│   │   │   │   └── repositories/
-│   │   │   ├── domain/
-│   │   │   │   ├── entities/
-│   │   │   │   └── usecases/
-│   │   │   └── presentation/
-│   │   │       ├── bloc/
-│   │   │       ├── pages/
-│   │   │       └── widgets/
-│   │   ├── news/
-│   │   │   ├── data/
-│   │   │   ├── domain/
-│   │   │   └── presentation/
-│   │   └── profile/
-│   │       └── presentation/
-│   └── main.dart
-├── assets/
-│   └── images/
-├── screenshots/
-├── .env.example
-├── pubspec.yaml
-└── README.md
+├── lib
+|   +---core
+|   |   +---di
+|   |   +---error
+|   |   +---extensions
+|   |   |   \---src
+|   |   +---notifications
+|   |   +---theme
+|   |   |   +---data
+|   |   |   |   +---datasource
+|   |   |   |   \---repository
+|   |   |   +---domain
+|   |   |   |   +---entities
+|   |   |   |   +---repositories
+|   |   |   |   \---usecases
+|   |   |   \---presentation
+|   |   \---usecase
+|   \---features
+|       +---home
+|       |   \---presentation
+|       +---news
+|       |   +---data
+|       |   |   +---datasource
+|       |   |   +---model
+|       |   |   \---repositories
+|       |   +---domain
+|       |   |   +---entities
+|       |   |   +---repositories
+|       |   |   \---usecases
+|       |   \---presentation
+|       |       +---provider
+|       |       \---view
+|       |           +---news_detail
+|       |           \---news_list
+|       +---profile
+|       +---setting
+|       |   +---data
+|       |   +---domain
+|       |   \---presentation
+|       |       +---provider
+|       |       \---setting.page
+|       \---todo
+|           +---data
+|           |   +---datasources
+|           |   +---models
+|           |   \---repositories
+|           +---domain
+|           |   +---entities
+|           |   +---repositories
+|           |   \---usecases
+|           \---presentation
+|               +---models
+|               +---provider
+|               \---view
 ```
 
 ## 🚀 Installation and Setup
@@ -194,16 +217,17 @@ Main dependencies used in this project:
 
 ```yaml
 dependencies:
-  flutter_bloc: ^8.1.3          # State management
-  hive: ^2.2.3                   # Local storage
+  flutter_riverpod: ^2.4.9
+  hive: ^2.2.3
   hive_flutter: ^1.1.0
-  http: ^1.1.0                   # API calls
-  flutter_local_notifications: ^16.1.0  # Notifications
-  intl: ^0.18.1                  # Date formatting
-  flutter_dotenv: ^5.1.0         # Environment variables
-  cached_network_image: ^3.3.0   # Image caching
-  url_launcher: ^6.2.1           # Open URLs
-  equatable: ^2.0.5              # Value equality
+  equatable: ^2.0.7
+  get_it: ^9.2.0
+  uuid: ^4.5.2
+  flutter_local_notifications: ^17.2.2
+  timezone: ^0.9.4
+  http: ^1.6.0
+  flutter_dotenv: ^6.0.0
+  shared_preferences: ^2.5.4
 ```
 
 ## 🎨 Features Demonstration
