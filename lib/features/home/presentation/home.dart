@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quicktask/features/news/presentation/view/news_list/news.page.dart';
 import 'package:quicktask/features/todo/presentation/view/task_list_page.dart';
 
 class HomeView extends StatefulWidget {
@@ -12,7 +13,7 @@ class HomeScreenState extends State<HomeView> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    Center(child: Text('News')),
+    Center(child: NewsPage()),
     Center(child: const TaskListPage()),
     Center(child: Text('Profile')),
     Center(child: Text('Settings')),
@@ -21,10 +22,7 @@ class HomeScreenState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('QuickTask'),
-      ),
-      body: _pages[_currentIndex], // shows selected tab content
+      body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
@@ -32,11 +30,14 @@ class HomeScreenState extends State<HomeView> {
             _currentIndex = index;
           });
         },
-        type: BottomNavigationBarType.fixed, // IMPORTANT for 4 tabs
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'News'),
           BottomNavigationBarItem(icon: Icon(Icons.task), label: 'Task'),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Profile',
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Settings'),
         ],
       ),
