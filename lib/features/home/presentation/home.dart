@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quicktask/features/news/presentation/view/news_list/news.page.dart';
+import 'package:quicktask/features/profile/profile.dart';
 import 'package:quicktask/features/setting/presentation/setting.page/setting.page.dart';
 import 'package:quicktask/features/todo/presentation/view/task_list_page.dart';
 
@@ -16,7 +17,7 @@ class HomeScreenState extends State<HomeView> {
   final List<Widget> _pages = [
     Center(child: NewsPage()),
     Center(child: const TaskListPage()),
-    Center(child: Text('Profile')),
+    Center(child: ProfilePage()),
     Center(child: SettingsPage()),
   ];
 

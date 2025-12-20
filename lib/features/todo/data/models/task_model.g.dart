@@ -1,5 +1,10 @@
-import 'package:hive/hive.dart';
-import 'task_model.dart';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'task_model.dart';
+
+// **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
 
 class TaskModelAdapter extends TypeAdapter<TaskModel> {
   @override
@@ -9,17 +14,15 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
   TaskModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++)
-        reader.readByte(): reader.read(),
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-
     return TaskModel(
       id: fields[0] as String,
       title: fields[1] as String,
       description: fields[2] as String?,
       isCompleted: fields[3] as bool,
       createdAt: fields[4] as DateTime,
-      reminderTime: fields[5] as DateTime?
+      reminderTime: fields[5] as DateTime?,
     );
   }
 
@@ -37,6 +40,17 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
       ..write(obj.isCompleted)
       ..writeByte(4)
       ..write(obj.createdAt)
+      ..writeByte(5)
       ..write(obj.reminderTime);
   }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TaskModelAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
 }

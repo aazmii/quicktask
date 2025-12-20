@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
-import '../../domain/entities/task.dart';
+import 'package:quicktask/features/todo/domain/entities/task.dart';
+part 'task_model.g.dart';
 
 @HiveType(typeId: 0)
 class TaskModel extends HiveObject {

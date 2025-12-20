@@ -1,7 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:quicktask/platform_channel.dart';
 import 'package:timezone/data/latest.dart' as tzData;
-
 import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
@@ -19,7 +17,6 @@ class NotificationService {
 
     await androidPlugin?.requestNotificationsPermission();
 
-    // 🔥 REQUIRED FOR ANDROID 12+
     await androidPlugin?.requestExactAlarmsPermission();
 
     const settings = InitializationSettings(

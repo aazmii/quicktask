@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:quicktask/core/notifications/notification_service.dart';
 import 'package:quicktask/core/theme/presentation/theme_notifier.dart';
-import 'package:quicktask/features/todo/data/models/task_adapter.dart';
 
 import 'features/home/presentation/home.dart';
 import 'features/todo/data/models/task_model.dart';
@@ -33,6 +32,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           themeMode: themeMode,
           debugShowCheckedModeBanner: false,
+
           theme: ThemeData.light(useMaterial3: true),
           darkTheme: ThemeData.dark(useMaterial3: true),
 
