@@ -62,15 +62,7 @@ class NewsDetailPage extends StatelessWidget {
                             fontSize: 12,
                           ),
                         ),
-                        const SizedBox(height: 4),
-                        Text(
-                          "Published by $publisher",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+
                         const SizedBox(height: 8),
                         Text(
                           title,
@@ -80,6 +72,15 @@ class NewsDetailPage extends StatelessWidget {
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          "Published by $publisher",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
