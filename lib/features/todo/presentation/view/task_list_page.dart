@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quicktask/features/todo/presentation/provider/task_provider.dart';
-import 'package:quicktask/features/todo/presentation/view/task.detail.dialog.dart';
+import 'package:quicktask/features/todo/presentation/view/task_detail_dialog.dart';
 
-import 'task.tile.dart';
+import 'task_tile.dart';
 
 class TaskListPage extends ConsumerStatefulWidget {
   const TaskListPage({super.key});

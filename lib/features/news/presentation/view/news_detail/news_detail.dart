@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class NewsDetailPage extends StatelessWidget {
@@ -33,7 +34,19 @@ class NewsDetailPage extends StatelessWidget {
                 children: [
                   Hero(
                     tag: imageUrl,
-                    child: Image.network(imageUrl, fit: BoxFit.cover),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: imageUrl,
+                      placeholder: (context, url) => Center(
+                        child: SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
+                    // child: Image.network(imageUrl, fit: BoxFit.cover),
                   ),
 
                   // Gradient overlay
